@@ -1,10 +1,10 @@
 /*global ko*/
 
-var D3KD = this.D3KD || {};
+var SPEEDTEST = this.SPEEDTEST || {};
 
 (function () {
     "use strict";
-    var dataViewModel = new D3KD.dataViewModel();
+    var speedtestViewModel = new SPEEDTEST.speedtestViewModel();
 
-    ko.applyBindings(dataViewModel);
+    ko.applyBindings(speedtestViewModel);
 }());

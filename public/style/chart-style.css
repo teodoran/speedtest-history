@@ -1,0 +1,28 @@
+.bigChart {
+    height: 500px;
+}
+
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+/* line chart specifics.*/
+.line {
+    fill: none;
+    stroke-width: 1.5px;
+}
+
+.download {
+    stroke: steelblue;
+}
+
+.upload {
+    stroke: orange;
+}

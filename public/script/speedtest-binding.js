@@ -1,6 +1,6 @@
 /*global ko, d3*/
 
-ko.bindingHandlers.lineChart = {
+ko.bindingHandlers.speedtest = {
     init: function(element) {
         "use strict";
 
@@ -9,6 +9,7 @@ ko.bindingHandlers.lineChart = {
             elementHeight = parseInt(d3.select(element).style("height"), 10),
             width = elementWidth - margin.left - margin.right,
             height = elementHeight - margin.top - margin.bottom,
+            svg;
 
         svg = d3.select(element).append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -27,11 +28,13 @@ ko.bindingHandlers.lineChart = {
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Price ($)");
+            .text("Mbits/s");
 
         svg.append("path")
-            .attr("class", "line data");
+            .attr("class", "line download");
 
+        svg.append("path")
+            .attr("class", "line upload");
     },
     update: function(element, valueAccessor) {
         "use strict";
@@ -41,9 +44,6 @@ ko.bindingHandlers.lineChart = {
             elementHeight = parseInt(d3.select(element).style("height"), 10),
             width = elementWidth - margin.left - margin.right,
             height = elementHeight - margin.top - margin.bottom,
-
-        // set the time it takes for the animation to take.
-            animationDuration = 750,
 
             x = d3.time.scale()
                 .range([0, width]),
@@ -59,35 +59,33 @@ ko.bindingHandlers.lineChart = {
                 .scale(y)
                 .orient("left"),
 
-            // define the graph line
-            line = d3.svg.line()
+            downloadLine = d3.svg.line()
                 .x(function(d) { return x(d.date); })
-                .y(function(d) { return y(d.close); }),
+                .y(function(d) { return y(d.download); }),
+
+            uploadLine = d3.svg.line()
+                .x(function(d) { return x(d.date); })
+                .y(function(d) { return y(d.upload); }),
 
             svg = d3.select(element).select("svg g"),
 
-            // parse data from the data-view-model
             data = ko.unwrap(valueAccessor());
 
-        // define the domain of the graph. max and min of the dimensions
         x.domain(d3.extent(data, function(d) { return d.date; }));
-        y.domain([0, d3.max(data, function(d) { return d.close; })]);
+        y.domain([0, d3.max(data, function(d) { return d.download; })]);
 
         svg.select("g.x.axis")
-            .transition()
-            .duration(animationDuration)
             .call(xAxis);
 
         svg.select("g.y.axis")
-            .transition()
-            .duration(animationDuration)
             .call(yAxis);
 
-        // add the line to the canvas
-        svg.select("path.line.data")
+        svg.select("path.line.download")
             .datum(data)
-            .transition()
-            .duration(animationDuration)
-            .attr("d", line);
+            .attr("d", downloadLine);
+
+        svg.select("path.line.upload")
+            .datum(data)
+            .attr("d", uploadLine);
     }
 };
