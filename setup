@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo installing pip...
+sudo python get-pip.py
+
+echo installing speedtest-cli...
+sudo pip install speedtest-cli
+
+echo installing npm dependencies...
+npm install
+
+echo linking heroku remote...
+heroku git:remote -a speedtest-history
+
+echo updating premisions...
+chmod +x speedtest

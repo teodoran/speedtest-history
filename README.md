@@ -14,3 +14,13 @@ Making the speedtest file executable:
 ```
 chmod +x speedtest
 ```
+
+```
+npm install
+```
+
+Set up the heroku connection.
+
+```
+git remote add heroku git@heroku.com:kodekollektivet.git
+```
