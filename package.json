@@ -1,0 +1,21 @@
+{
+  "name": "speedtest-history",
+  "version": "0.0.0",
+  "description": "Automaticaly log your internet speed and present the data in the browser",
+  "main": "app.js",
+  "scripts": {
+    "start": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/teodoran/speedtest-history.git"
+  },
+  "author": "Teodor Ande Elstad",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "b33d4fbc3e97570a6ed442286d02b6c65e1ce55f",
+  "dependencies": {
+    "http-server": "~0.6.1"
+  }
+}

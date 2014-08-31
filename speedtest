@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "New speedtest:" >> speedtest.log
+date --iso-8601=minutes >> speedtest.log
+speedtest-cli | grep "Hosted by*\|Download:*\|Upload:*" >> speedtest.log

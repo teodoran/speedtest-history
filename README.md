@@ -9,3 +9,8 @@ Pip installation:
 sudo python get-pip.py
 sudo pip install speedtest-cli
 ```
+
+Making the speedtest file executable:
+```
+chmod +x speedtest
+```
