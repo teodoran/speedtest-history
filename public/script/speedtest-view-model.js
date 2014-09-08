@@ -14,10 +14,13 @@ var SPEEDTEST = this.SPEEDTEST || {};
             _.chain(log.split('New speedtest:'))
                 .without('')
                 .map(function (logPoint) {
+                    var download = logPoint.split('Download: ')[1] || '00.00',
+                        upload = logPoint.split('Upload: ')[1] || '00.00';
+
                     self.speedtestData.push({
                         'date': new Date(logPoint.substring(1, 22)),
-                        'download': parseFloat(logPoint.split('Download: ')[1].substring(0, 5)),
-                        'upload': parseFloat(logPoint.split('Upload: ')[1].substring(0, 5))
+                        'download': parseFloat(download.substring(0, 5)),
+                        'upload': parseFloat(upload.substring(0, 5))
                     });
                 });
         });
